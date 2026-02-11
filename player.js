@@ -195,7 +195,7 @@ class MusicPlayer {
             width: '0',
             videoId: PL_DATA[this.currentIndex].id,
             playerVars: {
-                'autoplay': 0,
+                'autoplay': 1,
                 'controls': 0,
                 'disablekb': 1,
                 'fs': 0,
@@ -214,13 +214,12 @@ class MusicPlayer {
         this.player.setVolume(storedVol);
         this.updateVolumeUI(storedVol);
 
-        // Optional: Resume if it was playing? 
-        // For now, let's not auto-play aggressively to avoid issues, 
-        // OR respect localStorage 'kalebie_isPlaying' if user wants.
-        // User complained it's not playing, so let's try to obey usage.
-        if (localStorage.getItem('kalebie_should_play') === 'true') {
-            // Browser might block this
+        // Auto-play on load
+        try {
             this.player.playVideo();
+            localStorage.setItem('kalebie_should_play', 'true');
+        } catch (e) {
+            console.warn('Autoplay blocked:', e);
         }
 
         this.startTicker();

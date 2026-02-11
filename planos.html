@@ -20,7 +20,15 @@
 
     <nav id="navbar">
         <div class="container nav-content">
-            <a href="index.html" class="logo">KALEBIE <span class="dot">.</span></a>
+            <a href="index.html" class="logo">COACH KALEBIE</a>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
             <ul class="nav-links">
                 <li><a href="index.html">Início</a></li>
                 <li><a href="index.html#metodo">Método</a></li>
@@ -28,9 +36,11 @@
                 <li><a href="planos.html">Planos</a></li>
                 <li><a href="index.html#sobre">Sobre</a></li>
             </ul>
-            <a href="https://chat.whatsapp.com/FY41TbG9v4fKjJk7oOEKgV" target="_blank" class="nav-cta">EVOLUIR AGORA</a>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
 
     <div id="swup" class="transition-fade">
         <main>
@@ -167,7 +177,7 @@
                                 <i class="far fa-copy"></i> Copiar
                             </button>
                         </div>
-                        <p class="payment-footer">Após o pagamento, envie o comprovante no Discord.</p>
+                        <p class="payment-footer">Após o pagamento, envie o comprovante no WhatsApp.</p>
                     </div>
 
                     <!-- Card Section -->
@@ -179,12 +189,12 @@
                         <p class="installment-info">Parcelamos em até <span class="highlight-red">12x no cartão!</span>
                         </p>
                         <p class="installment-value" id="modal-plan-installments">12x de R$ 12,50</p>
-                        <p class="payment-footer">Entre em contato no Discord para pagar no cartão.</p>
+                        <p class="payment-footer">Entre em contato no WhatsApp para pagar no cartão.</p>
                     </div>
                 </div>
 
-                <a href="https://discord.com/invite/gqQvd5NCKy" target="_blank" class="btn-final-action">
-                    <i class="fab fa-discord"></i> Falar no Discord para Finalizar
+                <a href="https://wa.me/553597380206" target="_blank" class="btn-final-action">
+                    <i class="fab fa-whatsapp"></i> Falar no WhatsApp para Finalizar
                 </a>
             </div>
         </div>
@@ -240,6 +250,20 @@
         </div>
         <div class="playlist-content" id="playlist-items">
             <!-- Items injected by JS -->
+        </div>
+    </div>
+
+    <!-- Dedicated Mobile Menu Structure -->
+    <div class="mobile-menu-container" id="mobile-menu-container">
+        <ul class="mobile-menu-list">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="index.html#metodo">Método</a></li>
+            <li><a href="index.html#destaques">Destaques</a></li>
+            <li><a href="planos.html">Planos</a></li>
+            <li><a href="index.html#sobre">Sobre</a></li>
+        </ul>
+        <div class="mobile-menu-footer">
+            <p>COACH KALEBIE</p>
         </div>
     </div>
 

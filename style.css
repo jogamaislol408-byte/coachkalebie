@@ -50,7 +50,7 @@ body::before {
     z-index: -99;
 
     background-image:
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(5, 5, 5, 0.9) 100%);
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(5, 5, 5, 0.95) 100%);
 
     pointer-events: none;
 }
@@ -64,6 +64,7 @@ body::before {
     object-fit: cover;
     z-index: -100;
     pointer-events: none;
+    filter: brightness(0.6);
 }
 
 
@@ -132,45 +133,33 @@ nav {
     width: 100%;
     height: 80px;
     z-index: 1000;
-    background: transparent;
-    transition: none;
+    background: #000000;
+    border-bottom: 3px solid var(--accent-red);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.95),
+        0 0 50px rgba(225, 6, 0, 0.4),
+        inset 0 -1px 0 rgba(225, 6, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
-/* Black bar background animated on scroll */
-nav::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    z-index: 0;
-    /* Changed from -1 to 0 to be safe inside stacking context */
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    pointer-events: none;
-}
-
-nav.scrolled::before {
-    opacity: 1;
-    transform: translateY(0);
+nav.scrolled {
+    background: #000000;
+    border-bottom-color: var(--accent-red-bright);
+    box-shadow: 0 8px 50px rgba(0, 0, 0, 1),
+        0 0 60px rgba(225, 6, 0, 0.6),
+        inset 0 -1px 0 rgba(225, 6, 0, 0.5);
 }
 
 .nav-content {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
     position: relative;
-    /* Ensure z-index works */
     z-index: 10;
-    /* Strictly above the background */
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 2.2rem;
     font-weight: 900;
     color: #FFFFFF;
     text-decoration: none;
@@ -179,10 +168,16 @@ nav.scrolled::before {
     align-items: center;
     font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
+        0 0 15px rgba(255, 255, 255, 0.6),
+        0 4px 8px rgba(0, 0, 0, 1);
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
 }
 
 .logo .dot {
     color: var(--accent-red);
+    text-shadow: 0 0 30px rgba(225, 6, 0, 1),
+        0 0 15px rgba(225, 6, 0, 0.8);
 }
 
 .nav-links {
@@ -195,37 +190,64 @@ nav.scrolled::before {
 .nav-links a {
     text-decoration: none;
     color: #FFFFFF;
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.2em;
     transition: var(--transition-fast);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+        0 3px 6px rgba(0, 0, 0, 1);
 }
 
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--accent-red);
+    text-shadow: 0 0 25px rgba(225, 6, 0, 1),
+        0 0 15px rgba(225, 6, 0, 0.8),
+        0 3px 6px rgba(0, 0, 0, 1);
+}
+
+/* Special button style for Planos link - matching EVOLUIR AGORA */
+.nav-links li:nth-child(4) a {
+    background: var(--accent-red);
+    color: #FFFFFF;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    border: none;
+    box-shadow: 0 0 20px rgba(225, 6, 0, 0.5),
+        0 4px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.nav-links li:nth-child(4) a:hover {
+    background: var(--accent-red-bright);
+    box-shadow: 0 0 30px rgba(225, 6, 0, 0.8),
+        0 4px 15px rgba(0, 0, 0, 0.7);
+    transform: translateY(-2px);
 }
 
 .nav-cta {
     background: var(--accent-red);
     color: #FFFFFF;
     text-decoration: none;
-    font-size: 0.75rem;
-    font-weight: 800;
-    padding: 0.8rem 1.5rem;
-    border-radius: 4px;
-    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    font-weight: 900;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    letter-spacing: 0.15em;
     transition: var(--transition-base);
     justify-self: end;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 0 20px rgba(225, 6, 0, 0.5), 0 4px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .nav-cta:hover {
     background: var(--accent-red-bright);
-    box-shadow: 0 0 20px rgba(225, 6, 0, 0.6);
+    box-shadow: 0 0 30px rgba(225, 6, 0, 0.8), 0 4px 15px rgba(0, 0, 0, 0.7);
+    transform: translateY(-2px);
 }
 
 /* Mobile Responsiveness for Navbar */
@@ -235,15 +257,6 @@ nav.scrolled::before {
     }
 }
 
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-
-    .nav-content {
-        grid-template-columns: 1fr auto;
-    }
-}
 
 /* Buttons */
 .btn {
@@ -357,16 +370,32 @@ nav.scrolled::before {
 }
 
 .rank-card {
-    background: rgba(15, 15, 15, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 1.5rem 2rem;
-    border-radius: 12px;
+    background: rgba(15, 15, 15, 0.95);
+    border: 2px solid rgba(225, 6, 0, 0.4);
+    padding: 0;
+    border-radius: 16px;
     display: flex;
-    align-items: center;
-    gap: 1.5rem;
+    flex-direction: column;
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(225, 6, 0, 0.3),
+        0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.rank-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px 12px 0 0;
+    object-fit: cover;
+}
+
+.rank-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 2.5rem;
 }
 
 .rank-card::before {
@@ -375,18 +404,17 @@ nav.scrolled::before {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 3px;
-    height: 60%;
+    width: 4px;
+    height: 40%;
     background: var(--accent-red);
-    box-shadow: 0 0 15px var(--accent-red);
+    box-shadow: 0 0 20px var(--accent-red);
 }
 
 .rank-icon-render {
-    width: 85px;
-    height: 85px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
-    /* Restore original colors, just add a subtle glow */
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15));
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
     animation: rankFloat 3s ease-in-out infinite;
 }
 
@@ -415,25 +443,27 @@ nav.scrolled::before {
 
 .rank-name {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 900;
     color: #fff;
     line-height: 1;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 .rank-lp {
-    font-size: 0.85rem;
+    font-size: 1.1rem;
     color: #aaa;
     font-weight: 600;
+    margin-top: 0.3rem;
 }
 
 .rank-winrate {
-    margin-top: 0.2rem;
+    margin-top: 0.5rem;
     display: flex;
-    gap: 0.5rem;
-    font-size: 0.7rem;
+    gap: 0.7rem;
+    font-size: 0.95rem;
 }
 
 .rank-winrate .label {
@@ -443,6 +473,44 @@ nav.scrolled::before {
 .rank-winrate .value {
     color: #fff;
     font-weight: 900;
+}
+
+.rank-card .social-links {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.rank-card .social-links a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rank-card .social-links i {
+    font-size: 1.3rem;
+    color: #fff;
+    background: var(--accent-red);
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(225, 6, 0, 0.6),
+        0 0 30px rgba(225, 6, 0, 0.3),
+        inset 0 0 10px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.rank-card .social-links a:hover i {
+    background: var(--accent-red-bright);
+    box-shadow: 0 0 20px rgba(225, 6, 0, 0.8),
+        0 0 40px rgba(225, 6, 0, 0.5),
+        inset 0 0 15px rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px) scale(1.05);
 }
 
 /* Original colors for the small badge icon too */
@@ -990,11 +1058,15 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: rgba(10, 10, 10, 0.95);
-    border-top: 1px solid var(--border-dim);
-    backdrop-filter: blur(20px);
+    background: rgba(5, 5, 5, 0.5);
+    border-top: 2px solid rgba(225, 6, 0, 0.8);
+    backdrop-filter: blur(25px) saturate(180%);
     z-index: 2000;
     padding: 0.8rem 0;
+    box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.7),
+        0 0 60px rgba(225, 6, 0, 0.4),
+        inset 0 2px 0 rgba(225, 6, 0, 0.5),
+        inset 0 -1px 20px rgba(225, 6, 0, 0.1);
 }
 
 .player-content {
@@ -1016,7 +1088,9 @@ footer {
     width: 56px;
     height: 56px;
     border-radius: 4px;
-    border: 1px solid var(--border-dim);
+    border: 2px solid rgba(225, 6, 0, 0.6);
+    box-shadow: 0 0 15px rgba(225, 6, 0, 0.4),
+        inset 0 0 10px rgba(225, 6, 0, 0.1);
 }
 
 .track-details {
@@ -1030,6 +1104,8 @@ footer {
     font-weight: 700;
     color: #fff;
     margin-bottom: 0.2rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(225, 6, 0, 0.2);
 }
 
 .artist-name {
@@ -1066,31 +1142,41 @@ footer {
 }
 
 .btn-icon:hover {
-    color: #fff;
-    transform: scale(1.1);
+    color: var(--accent-red);
+    transform: scale(1.15);
+    text-shadow: 0 0 15px rgba(225, 6, 0, 0.8),
+        0 0 25px rgba(225, 6, 0, 0.4);
+    filter: drop-shadow(0 0 8px rgba(225, 6, 0, 0.6));
 }
 
 .btn-icon.active {
     color: var(--accent-red);
-    text-shadow: 0 0 10px rgba(225, 6, 0, 0.5);
+    text-shadow: 0 0 15px rgba(225, 6, 0, 0.8),
+        0 0 25px rgba(225, 6, 0, 0.5);
+    filter: drop-shadow(0 0 10px rgba(225, 6, 0, 0.7));
 }
 
 .btn-icon.play-pause {
     width: 35px;
     height: 35px;
-    background: #fff;
-    color: #000;
+    background: rgba(225, 6, 0, 0.2);
+    color: var(--accent-red);
+    border: 2px solid var(--accent-red);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.9rem;
+    box-shadow: 0 0 15px rgba(225, 6, 0, 0.4),
+        inset 0 0 10px rgba(225, 6, 0, 0.1);
 }
 
 .btn-icon.play-pause:hover {
     transform: scale(1.1);
     background: var(--accent-red);
     color: #fff;
+    box-shadow: 0 0 25px rgba(225, 6, 0, 0.8),
+        inset 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
 .progress-container {
@@ -1128,7 +1214,8 @@ footer {
     border-radius: 2px;
     width: 0%;
     transition: width 0.1s linear, background 0.2s ease;
-    box-shadow: 0 0 10px rgba(225, 6, 0, 0.5);
+    box-shadow: 0 0 10px rgba(225, 6, 0, 0.6),
+        0 0 20px rgba(225, 6, 0, 0.3);
 }
 
 .progress-bar:hover .progress-fill,
@@ -1607,4 +1694,525 @@ html.is-animating .transition-fade {
 /* Ensure content is visible even without Swup */
 #swup {
     min-height: 100vh;
+}
+
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+/* Mobile Menu Button (Hidden on Desktop) */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10001;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-red);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(225, 6, 0, 0.5);
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+    transform: translateY(10.5px) rotate(45deg);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+    transform: translateY(-10.5px) rotate(-45deg);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Tablets and below */
+@media (max-width: 768px) {
+
+    /* Navigation */
+    nav {
+        height: 70px;
+        padding: 0 1rem;
+    }
+
+    .nav-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+    }
+
+    .logo {
+        font-size: 1.5rem !important;
+    }
+
+    /* Show mobile menu button */
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    /* Hide original nav links on mobile */
+    .nav-links {
+        display: none !important;
+    }
+
+    /* Styles for the DEDICATED Mobile Menu */
+    .mobile-menu-container {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        /* Start off-screen */
+        width: 300px;
+        height: 100% !important;
+        /* Force full height */
+        min-height: 100% !important;
+        /* Ensure no scroll issues */
+        top: 0;
+        bottom: 0;
+        /* Anchor to bottom */
+        background: rgba(8, 8, 8, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 80px 2rem 2rem;
+        /* Reduced top padding slightly */
+        overflow-y: auto;
+        gap: 2rem;
+        border-left: 2px solid rgba(225, 6, 0, 0.8);
+        box-shadow: -10px 0 60px rgba(0, 0, 0, 0.9), 0 0 60px rgba(225, 6, 0, 0.2);
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 10002;
+        /* Higher than overlay (9999) and nav (1000) */
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .mobile-menu-container.active {
+        right: 0;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .mobile-menu-list {
+        list-style: none;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .mobile-menu-list li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .mobile-menu-list a {
+        display: block;
+        width: 100%;
+        padding: 1.2rem 0;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #fff;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-menu-list a:hover {
+        padding-left: 1rem;
+        color: var(--accent-red);
+        text-shadow: 0 0 10px rgba(225, 6, 0, 0.6);
+    }
+
+    .mobile-menu-footer p {
+        font-family: 'Orbitron', sans-serif;
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+        margin-top: auto;
+    }
+
+    /* Reset Planos button for mobile menu */
+    .nav-links li:nth-child(4) a {
+        background: transparent !important;
+        padding: 1.2rem 0 !important;
+        box-shadow: none !important;
+        transform: none !important;
+        color: #fff !important;
+        border-radius: 0 !important;
+        text-align: left !important;
+    }
+
+    .nav-links li:nth-child(4) a:hover {
+        padding-left: 1rem !important;
+        color: var(--accent-red) !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 100px 0 60px;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .hero-text {
+        max-width: 100%;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    .hero-text p {
+        font-size: 0.9rem;
+    }
+
+    /* Rank Card */
+    .rank-card {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .rank-banner {
+        max-height: 120px;
+        object-fit: cover;
+    }
+
+    .rank-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem 1rem;
+        gap: 1rem;
+    }
+
+    .rank-icon-render {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    .rank-name {
+        font-size: 1.2rem !important;
+    }
+
+    .rank-lp {
+        font-size: 0.9rem !important;
+    }
+
+    .rank-winrate {
+        font-size: 0.8rem !important;
+        justify-content: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .rank-card .social-links i {
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 1rem !important;
+    }
+
+    /* Buttons */
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Method Section */
+    .method-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Plans Section */
+    .plans-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .plan-card {
+        max-width: 100%;
+    }
+
+    /* CTA Section */
+    .cta-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .cta-card h2 {
+        font-size: 1.8rem;
+    }
+
+    .cta-card p {
+        font-size: 0.95rem;
+    }
+
+    /* Music Player */
+    .music-player {
+        padding: 0.6rem 0;
+    }
+
+    .player-content {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .song-info {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .cover-art {
+        width: 45px;
+        height: 45px;
+    }
+
+    .track-name {
+        font-size: 0.75rem !important;
+    }
+
+    .artist-name {
+        font-size: 0.65rem !important;
+    }
+
+    .player-controls {
+        width: 100%;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .btn-icon {
+        font-size: 0.9rem !important;
+    }
+
+    .btn-icon.play-pause {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 0.8rem !important;
+    }
+
+    .player-right {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .progress-container {
+        max-width: 100%;
+    }
+
+    /* Footer */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    /* Container */
+    .container {
+        padding: 0 1.5rem;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+
+    /* Navigation */
+    nav {
+        height: auto;
+        padding: 0.8rem 0.5rem;
+    }
+
+    .logo {
+        font-size: 1.2rem !important;
+    }
+
+    .nav-links {
+        gap: 0.5rem;
+    }
+
+    .nav-links a {
+        font-size: 0.65rem !important;
+        letter-spacing: 0.1em !important;
+    }
+
+    /* Hero */
+    .hero-text h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-text p {
+        font-size: 0.85rem;
+    }
+
+    /* Rank Card */
+    .rank-banner {
+        max-height: 100px;
+    }
+
+    .rank-content {
+        padding: 1rem 0.8rem;
+    }
+
+    .rank-icon-render {
+        width: 60px !important;
+        height: 60px !important;
+    }
+
+    .rank-name {
+        font-size: 1rem !important;
+        letter-spacing: 2px !important;
+    }
+
+    .rank-lp {
+        font-size: 0.8rem !important;
+    }
+
+    .rank-winrate {
+        font-size: 0.7rem !important;
+    }
+
+    .rank-card .social-links i {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.75rem;
+    }
+
+    /* CTA */
+    .cta-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .cta-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .cta-card p {
+        font-size: 0.85rem;
+    }
+
+    /* Music Player */
+    .cover-art {
+        width: 40px;
+        height: 40px;
+    }
+
+    .track-name {
+        font-size: 0.7rem !important;
+    }
+
+    .artist-name {
+        font-size: 0.6rem !important;
+        max-width: 150px;
+    }
+
+    .player-controls {
+        gap: 0.8rem;
+    }
+
+    .btn-icon {
+        font-size: 0.8rem !important;
+    }
+
+    .btn-icon.play-pause {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.75rem !important;
+    }
+
+    .progress-bar,
+    .volume-bar {
+        height: 3px;
+    }
+
+    .curr-time,
+    .total-time {
+        font-size: 0.65rem;
+        min-width: 25px;
+    }
+
+    /* Container */
+    .container {
+        padding: 0 1rem;
+    }
+
+    /* Method cards */
+    .method-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .method-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .method-card p {
+        font-size: 0.85rem;
+    }
+
+    /* Plan cards */
+    .plan-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .plan-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .plan-price {
+        font-size: 1.8rem;
+    }
 }

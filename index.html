@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="intro.css">
     <link rel="icon" type="image/png" href="images/icon.png">
+    <link rel="stylesheet" href="rank-card-nav.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -21,7 +22,15 @@
 
     <nav id="navbar">
         <div class="container nav-content">
-            <a href="index.html" class="logo">KALEBIE <span class="dot">.</span></a>
+            <a href="index.html" class="logo">COACH KALEBIE</a>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
             <ul class="nav-links">
                 <li><a href="index.html">Início</a></li>
                 <li><a href="index.html#metodo">Método</a></li>
@@ -29,9 +38,11 @@
                 <li><a href="planos.html">Planos</a></li>
                 <li><a href="index.html#sobre">Sobre</a></li>
             </ul>
-            <a href="https://chat.whatsapp.com/FY41TbG9v4fKjJk7oOEKgV" target="_blank" class="nav-cta">EVOLUIR AGORA</a>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
 
     <div id="swup" class="transition-fade">
         <main>
@@ -45,22 +56,38 @@
                         <p data-reveal>Saia do low elo com o método validado por anos no topo da tabela. Não é sorte, é
                             técnica.</p>
                         <div class="cta-group" data-reveal>
-                            <a href="https://chat.whatsapp.com/FY41TbG9v4fKjJk7oOEKgV" target="_blank"
-                                class="btn btn-primary">COMEÇAR AGORA</a>
+                            <a href="planos.html" class="btn btn-primary">COMEÇAR AGORA</a>
                             <a href="#metodo" class="btn btn-secondary">O MÉTODO</a>
                         </div>
                     </div>
                     <div class="hero-visual" data-reveal>
                         <div class="rank-card">
-                            <img src="images/icon.png" alt="Challenger Icon" class="rank-icon-render">
-                            <div class="rank-details">
-                                <div class="rank-header">
-                                    <span class="rank-name">Challenger</span>
-                                    <span class="rank-lp">1,210 LP</span>
-                                </div>
-                                <div class="rank-winrate">
-                                    <span class="label">Taxa de vitória</span>
-                                    <span class="value">98%</span>
+                            <img src="images/AzulChallenger.png" alt="Challenger Banner" class="rank-banner">
+                            <div class="rank-content">
+                                <img src="images/icon.png" alt="Challenger Icon" class="rank-icon-render">
+                                <div class="rank-details">
+                                    <div class="rank-header">
+                                        <span class="rank-name">Challenger</span>
+                                        <span class="rank-lp">1,002 LP</span>
+                                    </div>
+                                    <div class="rank-winrate">
+                                        <span class="label">Taxa de vitória</span>
+                                        <span class="value">72%</span>
+                                    </div>
+                                    <div class="social-links">
+                                        <a href="https://discord.com/invite/gqQvd5NCKy" target="_blank">
+                                            <i class="fab fa-discord"></i>
+                                        </a>
+                                        <a href="https://www.youtube.com/@kalebie" target="_blank">
+                                            <i class="fab fa-youtube"></i>
+                                        </a>
+                                        <a href="https://www.tiktok.com/@kalebie_" target="_blank">
+                                            <i class="fab fa-tiktok"></i>
+                                        </a>
+                                        <a href="https://kick.com/kalebie" target="_blank">
+                                            <i class="fab fa-kickstarter-k"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -163,7 +190,8 @@
                 <div class="container">
                     <div class="cta-card glass" data-reveal>
                         <h2>PRONTO PARA <span class="highlight">DOMINAR</span>?</h2>
-                        <p>As vagas para o plano vitalício são limitadas. Garanta seu lugar no topo.</p>
+                        <p>O conhecimento que separa os Reis dos peões. Acesse o canal direto com a nossa elite no
+                            WhatsApp e garanta sua evolução.</p>
                         <a href="https://chat.whatsapp.com/FY41TbG9v4fKjJk7oOEKgV" target="_blank"
                             class="btn btn-primary btn-large">COMEÇAR MINHA EVOLUÇÃO</a>
                     </div>
@@ -173,13 +201,7 @@
 
         <footer>
             <div class="container footer-content">
-                <div class="logo">KALEBIE <span class="dot">.</span></div>
-                <div class="social-links">
-                    <a href="https://discord.com/invite/gqQvd5NCKy" target="_blank"><i class="fab fa-discord"></i></a>
-                    <a href="https://www.youtube.com/@kalebie" target="_blank"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.tiktok.com/@kalebie_" target="_blank"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://kick.com/kalebie" target="_blank"><i class="fab fa-kickstarter-k"></i></a>
-                </div>
+                <!-- Social links moved to hero section -->
                 <div class="footer-links">
                     <p>&copy; 2024 Coaching Kalebie. Todos os direitos reservados.</p>
                 </div>
@@ -237,6 +259,20 @@
         </div>
         <div class="playlist-content" id="playlist-items">
             <!-- Items injected by JS -->
+        </div>
+    </div>
+
+    <!-- Dedicated Mobile Menu Structure -->
+    <div class="mobile-menu-container" id="mobile-menu-container">
+        <ul class="mobile-menu-list">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="index.html#metodo">Método</a></li>
+            <li><a href="index.html#destaques">Destaques</a></li>
+            <li><a href="planos.html">Planos</a></li>
+            <li><a href="index.html#sobre">Sobre</a></li>
+        </ul>
+        <div class="mobile-menu-footer">
+            <p>COACH KALEBIE</p>
         </div>
     </div>
 

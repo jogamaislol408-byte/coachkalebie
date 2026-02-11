@@ -1,0 +1,94 @@
+/* Rank Card in Navbar */
+.rank-card-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: rgba(15, 15, 15, 0.9);
+    border: 1px solid rgba(225, 6, 0, 0.3);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(225, 6, 0, 0.2);
+}
+
+.rank-icon-nav {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+}
+
+.rank-details-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.rank-header-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rank-name-nav {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.rank-lp-nav {
+    font-size: 0.7rem;
+    color: #aaa;
+    font-weight: 600;
+}
+
+.rank-winrate-nav {
+    display: flex;
+    gap: 0.4rem;
+    font-size: 0.65rem;
+}
+
+.rank-winrate-nav .label-nav {
+    color: #666;
+}
+
+.rank-winrate-nav .value-nav {
+    color: #fff;
+    font-weight: 900;
+}
+
+.social-links-nav {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.3rem;
+}
+
+.social-links-nav a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links-nav i {
+    font-size: 0.85rem;
+    color: #fff;
+    background: var(--accent-red);
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(225, 6, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.social-links-nav a:hover i {
+    background: var(--accent-red-bright);
+    box-shadow: 0 0 15px rgba(225, 6, 0, 0.6);
+    transform: translateY(-2px) scale(1.05);
+}
