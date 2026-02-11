@@ -1755,6 +1755,11 @@ html.is-animating .transition-fade {
     opacity: 1;
 }
 
+/* Hide dedicated mobile menu on desktop */
+.mobile-menu-container {
+    display: none;
+}
+
 /* Tablets and below */
 @media (max-width: 768px) {
 
