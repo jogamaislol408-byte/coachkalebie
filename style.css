@@ -753,6 +753,12 @@ nav.scrolled {
     --card-accent-shimmer: rgba(0, 243, 255, 0.3);
 }
 
+.card-orange {
+    --card-accent: #FF8C00;
+    --card-accent-shimmer: rgba(255, 140, 0, 0.3);
+}
+
+
 .price-card.featured {
     border: 1.5px solid var(--card-accent);
     transform: scale(1.05);
@@ -848,6 +854,16 @@ nav.scrolled {
 .price-card.card-cyan .btn:hover {
     box-shadow: 0 8px 25px rgba(0, 243, 255, 0.4);
 }
+
+.price-card.card-orange .btn {
+    background: #FF8C00;
+    color: #fff;
+}
+
+.price-card.card-orange .btn:hover {
+    box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
+}
+
 
 .old-price {
     font-size: 1.2rem;
