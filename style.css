@@ -1756,7 +1756,7 @@ html.is-animating .transition-fade {
 }
 
 /* Hide dedicated mobile menu on desktop */
-.mobile-menu-container {
+#mobile-menu-container {
     display: none;
 }
 
@@ -1791,7 +1791,7 @@ html.is-animating .transition-fade {
     }
 
     /* Styles for the DEDICATED Mobile Menu */
-    .mobile-menu-container {
+    #mobile-menu-container {
         position: fixed;
         top: 0;
         right: -300px;
@@ -1824,7 +1824,7 @@ html.is-animating .transition-fade {
         opacity: 0;
     }
 
-    .mobile-menu-container.active {
+    #mobile-menu-container.active {
         right: 0;
         visibility: visible;
         opacity: 1;
