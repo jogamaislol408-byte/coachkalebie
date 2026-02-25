@@ -53,14 +53,19 @@ function updateActiveLink() {
 })();
 
 var logoClickCount = 0;
+var logoClickTimer = null;
 document.addEventListener('click', function (e) {
     var logo = e.target.closest('.logo');
     if (logo && !e.target.closest('.mobile-menu-btn')) {
-        e.preventDefault();
         logoClickCount++;
-        if (logoClickCount === 1) {
-            showCouponModal();
+        if (logoClickCount >= 3) {
+            e.preventDefault();
             logoClickCount = 0;
+            clearTimeout(logoClickTimer);
+            showCouponModal();
+        } else {
+            clearTimeout(logoClickTimer);
+            logoClickTimer = setTimeout(function () { logoClickCount = 0; }, 600);
         }
     }
 });
@@ -127,7 +132,7 @@ function initAnimations() {
     });
 }
 
-function initModal() { }
+
 
 document.addEventListener('click', function (e) {
     var openBtn = e.target.closest('.open-payment');
@@ -211,9 +216,8 @@ document.addEventListener('click', function (e) {
 
 if (typeof Swup !== 'undefined') {
     var swup = new Swup({ containers: ['#swup'] });
-    swup.on('contentReplaced', function () {
+    swup.hooks.on('content:replace', function () {
         initAnimations();
-        initModal();
         updateActiveLink();
         window.scrollTo(0, 0);
     });
@@ -222,6 +226,50 @@ if (typeof Swup !== 'undefined') {
 document.addEventListener('DOMContentLoaded', function () {
     document.documentElement.classList.add('js-enabled');
     initAnimations();
-    initModal();
     updateActiveLink();
+    initProfileLightbox();
 });
+
+function initProfileLightbox() {
+    var trigger = document.getElementById('profile-expand-trigger');
+    if (!trigger) return;
+
+    // Create lightbox element once
+    var lightbox = document.createElement('div');
+    lightbox.className = 'profile-lightbox';
+    lightbox.innerHTML =
+        '<div class="profile-lightbox-card">' +
+        '<button class="profile-lightbox-close">&times;</button>' +
+        '<img src="' + trigger.src + '" alt="' + trigger.alt + '">' +
+        '<div class="profile-lightbox-info">' +
+        '<h3>Challenger 1000+ LP</h3>' +
+        '<p>Domínio total da fila Solo/Duo. Consistência comprovada no topo da tabela.</p>' +
+        '</div>' +
+        '</div>';
+    document.body.appendChild(lightbox);
+
+    function openLightbox() {
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    trigger.addEventListener('click', openLightbox);
+
+    // Close on overlay click (not card)
+    lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // Close on X button
+    lightbox.querySelector('.profile-lightbox-close').addEventListener('click', closeLightbox);
+
+    // Close on Escape
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+    });
+}

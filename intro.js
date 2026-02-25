@@ -29,9 +29,9 @@
             clearInterval(musicCheck);
             window.musicApp.forcePlay();
         }
-    }, 50);
+    }, 200);
 
-    setTimeout(function () { clearInterval(musicCheck); }, 15000);
+    setTimeout(function () { clearInterval(musicCheck); }, 8000);
 
     requestAnimationFrame(function () {
         var text = container.querySelector('.intro-text');

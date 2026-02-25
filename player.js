@@ -163,17 +163,6 @@ var MusicPlayer = (function () {
                 self._ensurePlayerDiv();
                 self.createPlayerInstance();
             };
-            if (!document.getElementById('yt-api-script')) {
-                var tag = document.createElement('script');
-                tag.id = 'yt-api-script';
-                tag.src = 'https://www.youtube.com/iframe_api';
-                var firstScript = document.getElementsByTagName('script')[0];
-                if (firstScript) {
-                    firstScript.parentNode.insertBefore(tag, firstScript);
-                } else {
-                    document.head.appendChild(tag);
-                }
-            }
         }
     };
 
@@ -212,9 +201,9 @@ var MusicPlayer = (function () {
         var retries = 0;
         var retry = setInterval(function () {
             retries++;
-            if (self.isPlaying || retries > 40) { clearInterval(retry); return; }
+            if (self.isPlaying || retries > 15) { clearInterval(retry); return; }
             try { self.player.playVideo(); } catch (_) { }
-        }, 250);
+        }, 500);
 
         this.startTicker();
     };
@@ -317,8 +306,26 @@ var MusicPlayer = (function () {
     };
 
     MP.prototype.startTicker = function () {
+        var self = this;
         if (this.progressInterval) clearInterval(this.progressInterval);
         this.progressInterval = setInterval(this.tick, 500);
+
+        // Pause ticker when tab is hidden to save CPU
+        if (!this._visibilityHandlerAdded) {
+            this._visibilityHandlerAdded = true;
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) {
+                    if (self.progressInterval) {
+                        clearInterval(self.progressInterval);
+                        self.progressInterval = null;
+                    }
+                } else {
+                    if (!self.progressInterval) {
+                        self.progressInterval = setInterval(self.tick, 500);
+                    }
+                }
+            });
+        }
     };
 
     MP.prototype.tick = function () {
