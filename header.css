@@ -1,0 +1,222 @@
+nav#navbar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 80px !important;
+    z-index: 9999 !important;
+    background: transparent !important;
+    transition: none !important;
+    padding: 0 !important;
+    display: block !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+nav#navbar::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: #000000 !important;
+    z-index: 0 !important;
+    opacity: 0 !important;
+    transform: translateY(-10px) !important;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out !important;
+    pointer-events: none !important;
+    display: block !important;
+}
+
+nav#navbar.scrolled::before {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+nav#navbar.scrolled {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+nav#navbar .nav-content {
+    position: relative !important;
+    z-index: 10 !important;
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    align-items: center !important;
+    height: 100% !important;
+    width: 100% !important;
+    padding: 0 4rem !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+}
+
+nav#navbar .logo {
+    justify-self: start !important;
+    font-size: 1.5rem !important;
+    font-weight: 900 !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    font-family: 'Orbitron', sans-serif !important;
+    text-transform: uppercase !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+nav#navbar .logo .dot {
+    color: #E10600 !important;
+}
+
+nav#navbar .nav-links {
+    justify-self: center !important;
+    display: flex !important;
+    gap: 1.5rem !important; /* Reduced to fit long translation words */
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+nav#navbar .nav-links a {
+    text-decoration: none !important;
+    color: #FFFFFF !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    transition: 0.2s ease !important;
+    opacity: 1 !important;
+    white-space: nowrap !important; /* Prevents wrapping mid-word on translations */
+}
+
+nav#navbar .nav-links a:hover {
+    color: #E10600 !important;
+}
+
+nav#navbar .nav-cta {
+    justify-self: end !important;
+    background: #E10600 !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    font-size: 0.75rem !important;
+    font-weight: 800 !important;
+    padding: 0.8rem 1.5rem !important;
+    border-radius: 4px !important;
+    letter-spacing: 0.1em !important;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    white-space: nowrap !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav#navbar .nav-cta:hover {
+    background: #FF1E1E !important;
+    box-shadow: 0 0 20px rgba(225, 6, 0, 0.6) !important;
+}
+
+@media (max-width: 768px) {
+    nav#navbar .container {
+        padding: 0 1.5rem !important;
+    }
+
+    nav#navbar .nav-links {
+        display: none !important;
+    }
+
+    nav#navbar .nav-content {
+        grid-template-columns: 1fr auto !important;
+    }
+}
+
+.lang-selector {
+    position: absolute;
+    right: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+}
+
+/* Invisible bridge to prevent hover loss when moving mouse to menu */
+.lang-selector::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: -10px;
+    right: -20px;
+    height: 20px;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lang-btn:hover {
+    color: #E10600;
+}
+
+.lang-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 15px;
+    background: #0D0D0D;
+    border: 1px solid rgba(225, 6, 0, 0.4);
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    min-width: 140px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(225, 6, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.lang-selector:hover .lang-menu {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.lang-menu a {
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 12px 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: 0.3s ease;
+}
+
+.lang-menu a:hover {
+    background: #E10600;
+}
+
+/* Hide Google Translate Banner and tooltips */
+.goog-te-banner-frame.skiptranslate,
+#goog-gt-tt {
+    display: none !important;
+}
+body {
+    top: 0px !important;
+}
+
+@media (max-width: 768px) {
+    .lang-selector {
+        right: 4rem;
+    }
+}
