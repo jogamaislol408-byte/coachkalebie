@@ -1,5 +1,5 @@
 (function () {
-    var STORAGE_KEY = 'kalebie_intro_v6';
+    var STORAGE_KEY = 'Kaleb_intro_v6';
     var DURATION_TEXT = 3700;
     var DURATION_CURTAIN = 1500;
 

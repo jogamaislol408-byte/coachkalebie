@@ -37,19 +37,19 @@ var MusicPlayer = (function () {
 
     MP.prototype.loadState = function () {
         try {
-            var idx = parseInt(localStorage.getItem('kalebie_track_index'));
+            var idx = parseInt(localStorage.getItem('Kaleb_track_index'));
             this.currentIndex = (isNaN(idx) || idx < 0 || idx >= PL_DATA.length) ? 0 : idx;
-            this.isShuffle = localStorage.getItem('kalebie_shuffle') === 'true';
-            this.isRepeat = localStorage.getItem('kalebie_repeat') === 'true';
+            this.isShuffle = localStorage.getItem('Kaleb_shuffle') === 'true';
+            this.isRepeat = localStorage.getItem('Kaleb_repeat') === 'true';
         } catch (_) {
             this.currentIndex = 0;
         }
     };
 
     MP.prototype.saveState = function () {
-        localStorage.setItem('kalebie_track_index', this.currentIndex);
-        localStorage.setItem('kalebie_shuffle', this.isShuffle);
-        localStorage.setItem('kalebie_repeat', this.isRepeat);
+        localStorage.setItem('Kaleb_track_index', this.currentIndex);
+        localStorage.setItem('Kaleb_shuffle', this.isShuffle);
+        localStorage.setItem('Kaleb_repeat', this.isRepeat);
     };
 
     MP.prototype._setupAutoplayBypass = function () {
@@ -58,7 +58,7 @@ var MusicPlayer = (function () {
         function handler() {
             if (self.player && typeof self.player.playVideo === 'function' && !self.isPlaying) {
                 try {
-                    var vol = parseInt(localStorage.getItem('kalebie_volume')) || 50;
+                    var vol = parseInt(localStorage.getItem('Kaleb_volume')) || 50;
                     self.player.setVolume(vol);
                     self.player.playVideo();
                 } catch (_) { }
@@ -140,7 +140,7 @@ var MusicPlayer = (function () {
                 var pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
                 var vol = Math.round(pct * 100);
                 self.player.setVolume(vol);
-                localStorage.setItem('kalebie_volume', vol);
+                localStorage.setItem('Kaleb_volume', vol);
                 self.updateVolumeUI(vol);
             });
         }
@@ -187,7 +187,7 @@ var MusicPlayer = (function () {
 
     MP.prototype.onPlayerReady = function () {
         var self = this;
-        var storedVol = parseInt(localStorage.getItem('kalebie_volume')) || 50;
+        var storedVol = parseInt(localStorage.getItem('Kaleb_volume')) || 50;
         this.player.setVolume(storedVol);
         this.updateVolumeUI(storedVol);
         window._musicReady = true;
@@ -211,7 +211,7 @@ var MusicPlayer = (function () {
     MP.prototype.forcePlay = function () {
         if (!this.player) return;
         try {
-            var vol = parseInt(localStorage.getItem('kalebie_volume')) || 50;
+            var vol = parseInt(localStorage.getItem('Kaleb_volume')) || 50;
             this.player.setVolume(vol);
             this.player.playVideo();
         } catch (_) { }

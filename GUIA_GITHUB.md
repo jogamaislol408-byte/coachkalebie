@@ -28,7 +28,7 @@ git push -u origin main
 ```powershell
 git remote remove origin  # (Só se o projeto já tinha um git antes)
 git remote add origin LINK_DO_REPOSITORIO_DO_AMIGO
-git push -u origin main
+git push -u origin main 
 ```
 
 ---
