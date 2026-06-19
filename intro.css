@@ -1,0 +1,92 @@
+#intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+}
+
+.curtain {
+    position: absolute;
+    top: 0;
+    width: 51%;
+    height: 100%;
+    background-color: #000;
+    z-index: 1;
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: transform;
+}
+
+.curtain-left {
+    left: 0;
+    transform-origin: left;
+}
+
+.curtain-right {
+    right: 0;
+    transform-origin: right;
+}
+
+.curtain-open .curtain-left {
+    transform: translateX(-100%);
+}
+
+.curtain-open .curtain-right {
+    transform: translateX(100%);
+}
+
+.curtain::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.intro-text-container {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+}
+
+.intro-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 5rem;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    opacity: 0;
+    transform: scale(0.95);
+    text-shadow: 0 0 30px rgba(225, 6, 0, 0.5);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.intro-text.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.intro-text.fade-out {
+    opacity: 0;
+    transform: scale(1.1);
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+@media (max-width: 768px) {
+    .intro-text {
+        font-size: 2rem;
+        padding: 0 20px;
+    }
+}
